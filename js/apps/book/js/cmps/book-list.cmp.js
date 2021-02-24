@@ -8,7 +8,6 @@ export default {
       <li v-for="book in books" :key="book.id" class="book-preview-container" >
         <book-preview :book="book"/>
         <div class="btns-container">
-          <!-- <router-link :to="'/books/'+book.id">Details</router-link> -->
         </div>
       </li>
     </ul>

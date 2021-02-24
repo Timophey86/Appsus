@@ -1,0 +1,21 @@
+@import "../js/apps/book/css/main.css";
+
+/* MAIN NAV BAR  */
+.app-header{
+    width: 100%;
+    background-color: bisque;
+}
+
+.main-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* MAIN LAYOUT */
+.main-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
