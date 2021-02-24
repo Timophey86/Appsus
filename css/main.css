@@ -1,4 +1,5 @@
 @import "../js/apps/book/css/main.css";
+@import "../js/apps/keep/css/style.css";
 
 /* MAIN NAV BAR  */
 .app-header{
@@ -18,6 +19,7 @@
     margin: 0 auto;
     padding-left: 0.6rem;
     padding-right: 0.6rem;
+<<<<<<< HEAD
   }
 
 
@@ -64,3 +66,7 @@
     display: flex;
     flex-direction: column;
 }
+=======
+}
+
+>>>>>>> 479b892d89b5c6b844428ef95c61931aff1160b6
