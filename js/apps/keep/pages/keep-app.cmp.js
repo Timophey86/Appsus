@@ -1,6 +1,8 @@
 import { notesService } from '../services/keep-service.js'
 import notePreview from '../cmps/note-preview.cmp.js'
 
+
+
 export default {
   template: `
     <section class="keep-app">
@@ -13,9 +15,9 @@ export default {
     };
   },
   created() {
-    
-    this.notes = notesService.getNotes()
-    console.log(this.notes);
+    this.notes = notesService.query()
+    notesService.query()
+    .then(notes => this.notes = notes)
   },
   components: {
     notePreview
