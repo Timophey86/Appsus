@@ -19,3 +19,48 @@
     padding-left: 0.6rem;
     padding-right: 0.6rem;
   }
+
+
+  /* EMAIL-LIST */
+
+  .email-display {
+      display: flex;
+      justify-content: space-between;
+      width: 150%;
+  }
+
+  .mail-headers {
+      margin-right: 10px;
+  }
+
+  .read {
+      color: grey
+  }
+
+
+/* MAIL MAIN CONTAINER */
+.mail-app-main-container{
+    display: flex;
+}
+  
+.mail-side-actions {
+    margin: 20px 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+    width: 10%;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+}
+
+.mail-side-actions button{
+
+    cursor: pointer;
+}
+
+/* EMAIL COMPOSE */
+
+.email-compose {
+    display: flex;
+    flex-direction: column;
+}

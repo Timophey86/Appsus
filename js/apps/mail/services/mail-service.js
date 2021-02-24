@@ -1,4 +1,4 @@
-import { storageService } from './async-storage-service.js'
+import { storageService } from '../../../main-services/async-storage-service.js'
 import {utilService} from './util-service.js'
 
 const KEY = 'emails'
@@ -6,10 +6,10 @@ const KEY = 'emails'
 export const mailService = {
     query,
     saveToStorage,
-    createBook,
     saveNewItemToStorage,
     removeItem,
-    getMails
+    getMails,
+    sendEmail
 }
 
 
@@ -17,17 +17,32 @@ function query(key = KEY) {
    return storageService.query(key)
 }
 
-function saveToStorage(key, value) {
+function saveToStorage(key = KEY, value) {
   storageService.postMany(key, value)
 }
 
 
-function saveNewItemToStorage(key, value) {
+function saveNewItemToStorage(key = KEY, value) {
   storageService.post(key,value)
 }
 
-function removeItem(key, value) {
+function removeItem(key = KEY, value) {
   storageService.remove(key, value)
+}
+
+
+function sendEmail(recipent, about, txt) {
+  let newEmail = {
+      id: utilService.makeId(),
+      from: 'Appsus Industries',
+      to: recipent,
+      subject: about,
+      body: txt,
+      isRead: false, 
+      sentAt: '22:15', 
+  };
+  gEmails.push(newEmail);
+  saveNewItemToStorage(KEY, newEmail);
 }
 
 
@@ -35,27 +50,30 @@ function getMails () {
   return gEmails
 }
 
-var gEmails= [{subject: 'Wassap?', body: 'Pick up!', isRead: false, sentAt : 1551133930594},]
+var gEmails = _createEmails()
 
-function createBook(book) {
- return {
-    id: book.id,
-    title: book.volumeInfo.title,
-    subtitle: "mi est eros convallis auctor arcu dapibus himenaeos",
-    authors: [_makeAuthor()],
-    publishedDate: book.volumeInfo.publishedDate,
-    description: _makeLorem(20),
-    pageCount: _getRandomIntInclusive(20,1000),
-    categories: ["Computers", "Hack"],
-    thumbnail: book.volumeInfo.imageLinks.smallThumbnail,
-    language: "en",
-    reviews:[],
-    listPrice: {
-      amount: _getRandomIntInclusive(20,200),
-      currencyCode: "EUR",
-      isOnSale: false,
-    },
+function _createEmail(status) {
+  return {
+      id: utilService.makeId(),
+      subject:_makeLorem(),
+      body:_makeLorem(10),
+      isRead: status,
+      date: Date.now(),
+      from: _makeAuthor(1),
+      to: _makeAuthor(1),
+
   }
+}
+
+
+function _createEmails() {
+var emails= []
+  for (var i = 0; i<10; i++) {
+    if (i===3 || i===6 || i===4){
+    emails.push(_createEmail(true))}
+    else (emails.push(_createEmail(false)))
+  }
+  return emails
 }
 
 
