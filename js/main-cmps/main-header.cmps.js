@@ -8,7 +8,7 @@ export default {
        <nav>
            <router-link active-class="active-link" to="/" exact>Home</router-link> 
            <router-link active-class="active-link" to="/keep" exact>Keep</router-link> 
-           <router-link active-class="active-link" to="/" exact>Mail</router-link> 
+           <router-link active-class="active-link" to="/mail-app" exact>Mail</router-link> 
            <router-link active-class="active-link" to="/book" exact>Book</router-link> 
        </nav>
 </section>
