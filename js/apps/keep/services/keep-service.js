@@ -2,15 +2,37 @@ import { storageService } from './async-storage-service.js'
 import { utilService } from './util-service.js'
 
 
+
 const KEY = 'notes'
 
 export const notesService = {
   query,
   getNotes,
   saveToStorage,
-  saveNewItemToStorage
+  saveNewItemToStorage,
+  editNote,
+  deleteNote,
+  getNewTxtNote,
+  addNote
 }
 
+
+function addNote(note){
+  console.log(note);
+  return storageService.post(KEY, note)
+}
+
+function editNote(note){
+  storageService.put(KEY,note)
+  
+}
+
+function saveToStorage(key, value) {
+  storageService.postMany(key, value)
+}
+function deleteNote(noteId){
+  return storageService.remove(KEY,noteId)
+}
 
 function query(key = KEY) {
   return storageService.query(key)
@@ -20,20 +42,32 @@ function getNotes() {
   return gNotes
 }
 
-function saveToStorage(key, value) {
-  storageService.postMany(key, value)
-}
+
 
 function saveNewItemToStorage(key, value) {
   storageService.post(key, value)
 }
 
+function getNewTxtNote(){
+  return {
+    id: utilService.makeId(3),
+    type: 'noteTxt',
+    isPinned: false,
+    info: {
+      txt: ''
+    },
+    style: {
+      backgroundColor: '#00d'
+    }
+  }
+}
+
 var gNotes = [
 
   {
-    id : utilService.makeId(3),
+    id: utilService.makeId(3),
     type: 'noteTxt',
-    isPinned: true,
+    isPinned: false,
     info: {
       txt: 'Fullstack Me Baby!'
     },
@@ -41,6 +75,18 @@ var gNotes = [
       backgroundColor: '#00d'
     }
   },
+  {
+    id: utilService.makeId(3),
+    type: 'noteTxt',
+    isPinned: false,
+    info: {
+      txt: 'Fullstack Me Baby!'
+    },
+    style: {
+      backgroundColor: '#00d'
+    }
+  }
+
   // {
   //   id : utilService.makeId(3),
   //   type: 'NoteImg',
