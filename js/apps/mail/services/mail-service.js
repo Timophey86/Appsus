@@ -11,6 +11,7 @@ export const mailService = {
   getMails,
   sendEmail,
   changeReadStatus,
+  changeStaredStatus
 };
 
 function query(key = KEY) {
@@ -38,6 +39,7 @@ function sendEmail(recipent, about, txt) {
     subject: about,
     body: txt,
     isRead: false,
+    isStared: false,
     date: Date.now(),
   };
   saveNewItemToStorage(KEY, newEmail);
@@ -46,6 +48,12 @@ function sendEmail(recipent, about, txt) {
 function changeReadStatus(id) {
   storageService.get(KEY, id).then((mail) => {
     (mail.isRead = true), storageService.put(KEY, mail);
+  });
+}
+
+function changeStaredStatus(id) {
+  storageService.get(KEY, id).then((mail) => {
+    (mail.isStared = !mail.isStared), storageService.put(KEY, mail);
   });
 }
 
@@ -65,6 +73,7 @@ function _createEmail(status) {
     date: Date.now(),
     from: _makeAuthor(1),
     to: _makeAuthor(1),
+    isStared: false,
   };
 }
 

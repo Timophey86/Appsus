@@ -28,12 +28,11 @@ export default {
         }
     },
     created() {
-        eventBus.$on('REPLY', (email) => {
-       this.mail.to= 'To: '+email.from,
-       this.mail.subject= 'Re: '+email.subject
-    })
         this.mail.id = utilService.makeId()
-    
+        if(this.$route.params.to) {
+            this.mail.to='To: '+this.$route.params.to,
+            this.mail.subject='Re: '+ this.$route.params.subject
+        }
     },
     methods: {
         send() {
@@ -43,3 +42,5 @@ export default {
         saveToSent() {}
     }
 }
+
+

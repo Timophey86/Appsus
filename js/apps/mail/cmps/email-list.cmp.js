@@ -1,13 +1,34 @@
 import { mailService } from "../services/mail-service.js";
 import emailPreview from "./email-preview.cmp.js";
+import { eventBus } from "../services/event-bus.js";
 const KEY = "emails";
 
 export default {
   template: `
     <section class= "email-list">
         <h3>This is our emails list</h3>
-        <email-preview v-for="(currEmail, idx) in emails" :key="currEmail.id"
-            :email="currEmail" :idx="idx"> 
+        <div class="sort-and-search">
+        <div class="sort">Sort By
+        <select class="sort-by-bar" @change="sortEmails" v-model="sortBy">
+                <option value="all" selected>All</option>
+                <option value="date">Date</option>
+                <option value="stared">Starred</option>
+                <option value="read">Read</option>
+                <option value="author">Author</option>
+            </select>
+            </div>
+            <div class="search-bar">Filter
+            <select class="read-unread-all" v-model="filterBy.options">
+                <option value="all" selected>All</option>
+                <option value="unread">Unread</option>
+                <option value="read">Read</option>
+                <option value="read">Starred</option>
+            </select>
+            <input type="search"  id="search-email-input" autofocus placeholder="🔍 Search mail" v-model="filterBy.searchTxt">
+        </div>
+            </div>
+        <email-preview v-for="(currEmail, idx) in filteredEmails" :key="currEmail.id"
+     :email="currEmail" :idx="idx"> 
         </email-preview> 
     </section>
     `,
@@ -15,6 +36,11 @@ export default {
     return {
       emails: [],
       routeName: "inbox",
+      filterBy: {
+        searchTxt: "",
+        options: "all",
+      },
+      sortBy: "all",
     };
   },
   methods: {
@@ -40,11 +66,99 @@ export default {
         this.emails = sentMails;
       });
     },
-    // ,
-    // changeRouteStatus(name) {
-    //     this.routeName = name
-    //     this.$router.push('/mail-app/'+this.routeName)
-    // }
+    moveToCompose(mail) {
+      this.$router.push(`/mail-app/compose?to=${mail.to}`);
+    },
+    sortEmails() {
+      if (this.sortBy === "stared") {
+        this.emails.sort((email) => {
+          return email.isStared ? -1 : 1;
+        });
+      } else if (this.sortBy === "read") {
+        this.emails.sort((email) => {
+            return email.isRead ? -1 : 1;
+          });
+      }
+      else if (this.sortBy === "date") {
+        this.emails.sort((a,b) => {
+            return a.date - b.date
+          });
+      } else if (this.sortBy === "author") {
+        this.emails.sort((a,b) => {
+            var nameA = a.from.toUpperCase(); 
+            var nameB = b.from.toUpperCase(); 
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+            return 0;
+          });
+      } else {
+        this.$router.go();
+      }
+    },
+  },
+  computed: {
+    filteredEmails() {
+      if (!this.emails) return;
+      if (this.filterBy.options === "all") {
+        var filtered = this.emails.filter((email) => {
+          return (
+            email.body
+              .toLowerCase()
+              .includes(this.filterBy.searchTxt.toLowerCase()) ||
+            email.subject
+              .toLowerCase()
+              .includes(this.filterBy.searchTxt.toLowerCase()) ||
+            email.to
+              .toLowerCase()
+              .includes(this.filterBy.searchTxt.toLowerCase()) ||
+            email.from
+              .toLowerCase()
+              .includes(this.filterBy.searchTxt.toLowerCase())
+          );
+        });
+      } else if (this.filterBy.options === "unread") {
+        var filtered = this.emails.filter((email) => {
+          return (
+            !email.isRead &&
+            (email.body
+              .toLowerCase()
+              .includes(this.filterBy.searchTxt.toLowerCase()) ||
+              email.subject
+                .toLowerCase()
+                .includes(this.filterBy.searchTxt.toLowerCase()) ||
+              email.to
+                .toLowerCase()
+                .includes(this.filterBy.searchTxt.toLowerCase()) ||
+              email.from
+                .toLowerCase()
+                .includes(this.filterBy.searchTxt.toLowerCase()))
+          );
+        });
+      } else {
+        var filtered = this.emails.filter((email) => {
+          return (
+            email.isRead &&
+            (email.body
+              .toLowerCase()
+              .includes(this.filterBy.searchTxt.toLowerCase()) ||
+              email.subject
+                .toLowerCase()
+                .includes(this.filterBy.searchTxt.toLowerCase()) ||
+              email.to
+                .toLowerCase()
+                .includes(this.filterBy.searchTxt.toLowerCase()) ||
+              email.from
+                .toLowerCase()
+                .includes(this.filterBy.searchTxt.toLowerCase()))
+          );
+        });
+      }
+      return filtered;
+    },
   },
   created() {
     if (this.$route.name === "inbox") {

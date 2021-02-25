@@ -25,9 +25,8 @@
 
 .email-display {
   display: grid;
-  grid-template-columns: 200px 300px 100px 70px;
+  grid-template-columns: 30px 200px 300px 100px 70px;
   border: 1px solid grey;
-  /* width: 150%; */
   cursor: pointer;
 }
 
@@ -39,6 +38,11 @@
   color: grey;
 }
 
+.sort-and-search {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* EMAIL-PREVIEW */
 .action-buttons {
 display: flex;
@@ -48,19 +52,26 @@ justify-content: space-between;
 /* MAIL MAIN CONTAINER */
 .mail-app-main-container {
   display: flex;
+  justify-content: center;
 }
 
 .mail-side-actions {
-  margin: 20px 10px 0 10px;
-  display: flex;
-  flex-direction: column;
   width: 10%;
-  align-items: center;
-  justify-content: space-between;
-  height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.mail-side-actions button {
+.buttons {
+  width: 100%;
+  table-layout: fixed;
+  margin-right:20px
+}
+
+.buttons button {
+  width: 100%;
+  margin-top: 10px;
   cursor: pointer;
 }
 
@@ -70,11 +81,8 @@ justify-content: space-between;
   display: flex;
   flex-direction: column;
 }
-<<<<<<< HEAD
 
-=======
 .body-txt {
   background-color: hotpink;
   cursor: pointer;
 }
->>>>>>> f0dc3c17af2c633d25d5d496c60f70da13b82ff6
