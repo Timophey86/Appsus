@@ -1,82 +1,82 @@
-import { storageService } from '../../../main-services/async-storage-service.js'
-import {utilService} from './util-service.js'
+import { storageService } from "../../../main-services/async-storage-service.js";
+import { utilService } from "./util-service.js";
 
-const KEY = 'emails'
+const KEY = "emails";
 
 export const mailService = {
-    query,
-    saveToStorage,
-    saveNewItemToStorage,
-    removeItem,
-    getMails,
-    sendEmail
-}
-
+  query,
+  saveToStorage,
+  saveNewItemToStorage,
+  removeItem,
+  getMails,
+  sendEmail,
+  changeReadStatus,
+};
 
 function query(key = KEY) {
-   return storageService.query(key)
+  return storageService.query(key);
 }
 
 function saveToStorage(key = KEY, value) {
-  storageService.postMany(key, value)
+  storageService.postMany(key, value);
 }
 
-
 function saveNewItemToStorage(key = KEY, value) {
-  storageService.post(key,value)
+  storageService.post(key, value);
 }
 
 function removeItem(key = KEY, value) {
-  storageService.remove(key, value)
+  storageService.remove(key, value);
 }
-
 
 function sendEmail(recipent, about, txt) {
   let newEmail = {
-      id: utilService.makeId(),
-      from: 'Appsus Industries',
-      to: recipent,
-      subject: about,
-      body: txt,
-      isRead: false, 
-      sentAt: '22:15', 
+    isSent: true,
+    id: utilService.makeId(),
+    from: "Appsus Industries",
+    to: recipent,
+    subject: about,
+    body: txt,
+    isRead: false,
+    date: Date.now(),
   };
-  gEmails.push(newEmail);
   saveNewItemToStorage(KEY, newEmail);
 }
 
-
-function getMails () {
-  return gEmails
+function changeReadStatus(id) {
+  storageService.get(KEY, id).then((mail) => {
+    (mail.isRead = true), storageService.put(KEY, mail);
+  });
 }
 
-var gEmails = _createEmails()
+function getMails() {
+  return gEmails;
+}
+
+var gEmails = _createEmails();
 
 function _createEmail(status) {
   return {
-      id: utilService.makeId(),
-      subject:_makeLorem(),
-      body:_makeLorem(10),
-      isRead: status,
-      date: Date.now(),
-      from: _makeAuthor(1),
-      to: _makeAuthor(1),
-
-  }
+    isSent: false,
+    id: utilService.makeId(),
+    subject: _makeLorem(),
+    body: _makeLorem(10),
+    isRead: status,
+    date: Date.now(),
+    from: _makeAuthor(1),
+    to: _makeAuthor(1),
+  };
 }
-
 
 function _createEmails() {
-var emails= []
-  for (var i = 0; i<10; i++) {
-    if (i===3 || i===6 || i===4){
-    emails.push(_createEmail(true))}
-    else (emails.push(_createEmail(false)))
+  var emails = [];
+  for (var i = 0; i < 10; i++) {
+    if (i === 3 || i === 6 || i === 4) {
+      emails.push(_createEmail(true));
+    } else emails.push(_createEmail(false));
   }
-  return emails
+  return emails;
 }
-
-
 
 function _makeAuthor(nameLength = 2) {
   var names = [
@@ -155,9 +155,9 @@ function _makeLorem(size = 2) {
   return capitaliseFirstLetter(txt);
 }
 
-function capitaliseFirstLetter (txt) {
-  var upperCaseTxt = txt.charAt(0).toUpperCase()+txt.slice(1)
-  return upperCaseTxt
+function capitaliseFirstLetter(txt) {
+  var upperCaseTxt = txt.charAt(0).toUpperCase() + txt.slice(1);
+  return upperCaseTxt;
 }
 
 function _getRandomIntInclusive(min, max) {

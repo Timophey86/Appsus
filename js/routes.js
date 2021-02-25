@@ -26,7 +26,7 @@ const routes = [
       {
         path: "/",
         component: mailList,
-        name: "Welcome",
+        name: "inbox",
       },
       { path: "inbox", component: mailList, name: "inbox" },
       { path: "compose", component: compose, name: "compose" },
