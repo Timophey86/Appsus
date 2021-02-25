@@ -17,7 +17,4 @@ export default {
             this.$emit('addNote',this.newTxtNote)
         }
     }
-
-
-
 };

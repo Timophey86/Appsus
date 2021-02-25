@@ -1,15 +1,14 @@
 import { notesService } from '../services/keep-service.js'
-import notePreview from '../cmps/note-preview.cmp.js'
+import noteList from '../cmps/note-list.cmp.js'
 import noteAdd from '../cmps/note-add.cmp.js'
 const KEY = 'notes'
-
 
 export default {
   template: `
     <section v-if="notes" class="keep-app">
-      <note-preview @deleteNote="deleteNote" :notes="notes"></note-preview>
+      <note-list @deleteNote="deleteNote" :notes="notes"></note-list>
       <div class="add">
-        <button @click="add">add</button>
+        <button class="add-btn" @click="add">add</button>
         <note-add @addNote="addNote" v-if="isAdd"/>
       </div>
     </section>
@@ -28,14 +27,10 @@ export default {
             notesService.saveToStorage(KEY, this.notes)
         } else {
           this.notes = notes
-
         }})
     },
     add() {
-      // console.log('add');
-      this.isAdd = true
-      
-      
+      this.isAdd = true 
     },
     deleteNote(noteId){
       notesService.deleteNote(noteId)
@@ -48,19 +43,14 @@ export default {
       .then(()=>{
         this.getNotes()
        })
+       this.isAdd = false
     }
   },
-
   created() {
     this.getNotes()
-
-
   },
   components: {
-    notePreview,
+    noteList,
     noteAdd,
   }
-
-
-
 };

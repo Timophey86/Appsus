@@ -6,7 +6,8 @@ export default {
   props: ['note'],
   template: `
     <section class="note-txt">
-      <h1>{{note.info.txt}}</h1>
+      <h1>{{note.info.title}}</h1>
+      <img width= "140px" height="140px" :src="note.info.url" >
       <button @click="edit">Edit</button>
       <button @click="deleteNote">delete</button>
       <note-edit-modal @save="save" v-if="this.isEdit" :note="note" />
@@ -34,4 +35,3 @@ export default {
     noteEditModal,
   }
 };
-
