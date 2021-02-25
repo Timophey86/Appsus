@@ -1,13 +1,11 @@
 import {mailService} from "../services/mail-service.js"
 import {utilService} from '../services/util-service.js'
-import {eventBus} from "../services/event-bus.js"
 
 export default {
-    props: ['email'],
+    // props: ['email'],
     template: `
         <section class="email-compose">
             <div class="mail-title">Email compose</div>
-            <div> {{email}}</div>
             <input placeholder="To:" v-model="mail.to" autofocus required> 
             <input placeholder="Subject" v-model="mail.subject" required>
             <textarea class="compose-body" rows="8" cols="50" placeholder="email text" v-model="mail.body" required></textarea>
@@ -28,12 +26,7 @@ export default {
         }
     },
     created() {
-        eventBus.$on('REPLY', (email) => {
-       this.mail.to= 'To: '+email.from,
-       this.mail.subject= 'Re: '+email.subject
-    })
         this.mail.id = utilService.makeId()
-    
     },
     methods: {
         send() {

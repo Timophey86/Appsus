@@ -1,0 +1,15 @@
+.note-txt{
+    margin: auto;
+}
+
+.note{
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+}
+
+.edit-modal{
+    background-color: white;
+    width: 350px;
+    height: 300px;
+}

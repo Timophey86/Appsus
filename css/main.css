@@ -2,71 +2,75 @@
 @import "../js/apps/keep/css/style.css";
 
 /* MAIN NAV BAR  */
-.app-header{
-    width: 100%;
-    background-color: bisque;
+.app-header {
+  width: 100%;
+  background-color: bisque;
 }
 
 .main-header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* MAIN LAYOUT */
 .main-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding-left: 0.6rem;
-    padding-right: 0.6rem;
-<<<<<<< HEAD
-  }
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 0.6rem;
+  padding-right: 0.6rem;
+}
 
+/* EMAIL-LIST */
 
-  /* EMAIL-LIST */
+.email-display {
+  display: grid;
+  grid-template-columns: 200px 300px 100px 70px;
+  border: 1px solid grey;
+  /* width: 150%; */
+  cursor: pointer;
+}
 
-  .email-display {
-      display: flex;
-      justify-content: space-between;
-      width: 150%;
-  }
+.mail-headers {
+  margin-right: 10px;
+}
 
-  .mail-headers {
-      margin-right: 10px;
-  }
+.read {
+  color: grey;
+}
 
-  .read {
-      color: grey
-  }
-
+/* EMAIL-PREVIEW */
+.action-buttons {
+display: flex;
+justify-content: space-between;
+}
 
 /* MAIL MAIN CONTAINER */
-.mail-app-main-container{
-    display: flex;
+.mail-app-main-container {
+  display: flex;
 }
-  
+
 .mail-side-actions {
-    margin: 20px 10px 0 10px;
-    display: flex;
-    flex-direction: column;
-    width: 10%;
-    align-items: center;
-    justify-content: space-between;
-    height: 80px;
+  margin: 20px 10px 0 10px;
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
 }
 
-.mail-side-actions button{
-
-    cursor: pointer;
+.mail-side-actions button {
+  cursor: pointer;
 }
 
 /* EMAIL COMPOSE */
 
 .email-compose {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-=======
+.body-txt {
+  background-color: hotpink;
+  cursor: pointer;
 }
-
->>>>>>> 479b892d89b5c6b844428ef95c61931aff1160b6
