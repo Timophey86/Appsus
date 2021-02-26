@@ -25,7 +25,11 @@
 
 .email-display {
   display: grid;
-  grid-template-columns: 30px 200px 300px 100px 70px;
+  grid-template-columns: 0.3fr 1.2fr 2fr 0.8fr 0.7fr;
+  grid-auto-rows: 30px;
+  grid-column-gap: 10px;
+  font-size: 20px;
+  align-items: center;
   border: 1px solid grey;
   cursor: pointer;
 }
@@ -38,6 +42,7 @@
   color: grey;
 }
 
+
 .sort-and-search {
   display: flex;
   justify-content: space-between;
@@ -45,28 +50,52 @@
 
 /* EMAIL-PREVIEW */
 .action-buttons {
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.stars-container {
+  padding: 10px;
+}
+
+.title {
+  margin-right: 3px;
 }
 
 /* MAIL MAIN CONTAINER */
 .mail-app-main-container {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .mail-side-actions {
   width: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+  display: grid;
+  /* align-items: center;
+    justify-content: center; */
+  padding: 20px;
+  align-items: center;
+  justify-items: stretch;
+  grid-row-gap: 10px;
+  margin-right: 10px;
+}
+
+.mail-side-actions a {
+  text-decoration: none;
+  color: black;
+  background-color: #faf3e0;
+  border: 2px solid black;
+  text-align: center;
+  padding: 10px;
+  font-size: large;
 }
 
 .buttons {
   width: 100%;
   table-layout: fixed;
-  margin-right:20px
+  margin-right: 20px;
 }
 
 .buttons button {
