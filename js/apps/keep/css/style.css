@@ -2,29 +2,18 @@
     box-sizing: border-box;
 }
 
-.note-container{
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.notes-list{
-    width: 200px;
-    height: 200px;
-    cursor: pointer;
-    display: flex;
-    
-    list-style: none;
-
-
-}
 .note{
     width: 200px;
     height: 200px;
-    padding: 10px;
     margin: 5px;
+}
 
+.note-container{
+    display: flex;
+    flex-wrap: wrap;
 
 }
+
 
 .edit-modal{
     background-color: white;

@@ -1,5 +1,3 @@
-
-
 export default {
   props: ['note'],
   template: `

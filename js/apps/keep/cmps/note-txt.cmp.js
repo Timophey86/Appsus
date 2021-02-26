@@ -5,11 +5,15 @@ import { notesService } from '../services/keep-service.js'
 export default {
   props: ['note'],
   template: `
-    <section class="note-txt">
-      <h1>{{note.info.txt}}</h1>
-      <button @click="edit">Edit</button>
-      <button @click="deleteNote">delete</button>
-      <note-edit-modal @save="save" v-if="this.isEdit" :note="note" />
+    <section>
+      <div class="note" :style="{ 'background-color': note.style.backgroundColor }">
+        
+        <h1>{{note.info.txt}}</h1>
+        <button @click="edit">Edit</button>
+        <button @click="deleteNote">delete</button>
+        <note-edit-modal @save="save" v-if="this.isEdit" :note="note" />
+
+      </div>
     </section>
     
   `,

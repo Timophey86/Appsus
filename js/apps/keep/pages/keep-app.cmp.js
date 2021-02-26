@@ -5,11 +5,17 @@ const KEY = 'notes'
 
 export default {
   template: `
-    <section v-if="notes" class="keep-app">
+    <section v-if="notes" class="keep-app " >
       <note-list @deleteNote="deleteNote" :notes="notes"></note-list>
       <div class="add">
-        <button class="add-btn" @click="add">add</button>
-        <note-add @addNote="addNote" v-if="isAdd"/>
+        
+        <select @change="onChange($event)" class="add-btn">
+        <option value="noteTxt">text</option>
+        <option value="noteTodos">todo</option>
+        <option value="noteImg">img</option>
+        </select>
+        <!-- <button class="add-btn" @click="add">add</button> -->
+        <note-add :noteType="this.noteType" @addNote="addNote" v-if="isAdd"/>
       </div>
     </section>
   `,
@@ -17,9 +23,14 @@ export default {
     return {
       notes: null,
       isAdd: false,
+      noteType: null
     };
   },
   methods: {
+    onChange(event) {
+      this.noteType = event.target.value
+      this.isAdd = true 
+    },
     getNotes() {
       notesService.query(KEY)
         .then(notes => {if (!notes || !notes.length) {
