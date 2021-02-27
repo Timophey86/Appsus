@@ -8,10 +8,10 @@ export default {
         <section class="email-compose">
             <div class="mail-title">Email compose</div>
             <div> {{email}}</div>
-            <input placeholder="To:" v-model="mail.to" autofocus required> 
-            <input placeholder="Subject" v-model="mail.subject" required>
-            <textarea class="compose-body" rows="8" cols="50" placeholder="email text" v-model="mail.body" required></textarea>
-            <button @click="send">Send</button>
+            <input type="text" placeholder="To:" v-model="mail.to" autofocus required> 
+            <input type="text" placeholder="Subject" v-model="mail.subject" required>
+            <textarea type="text" class="compose-body" rows="10" cols="50" placeholder="email text" v-model="mail.body" required></textarea>
+            <button class="send" @click="send">Send</button>
             <!-- <button class="save-to-draft">Save to draft <i class="fas fa-archive"></i></button> -->
         </section> 
     `,

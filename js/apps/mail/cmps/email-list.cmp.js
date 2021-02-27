@@ -83,6 +83,7 @@ export default {
       }
       else if (this.sortBy === "date") {
         this.emails.sort((a,b) => {
+          console.log(a.date);
             return a.date - b.date
           });
       } else if (this.sortBy === "author") {
@@ -103,6 +104,7 @@ export default {
     },
     getNumOfUnread() {
       var unread = 0
+      console.log('im unreaddddddd');
       this.emails.forEach(mail => {
         if (!mail.isRead) {
           unread++}
@@ -176,7 +178,6 @@ export default {
     } else if (this.$route.name === "sent") {
       this.getSentMails();
     }
-    
   },
   components: {
     emailPreview,

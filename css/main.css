@@ -104,13 +104,6 @@ html {
     max-width: 250px;
   }
 
-  /* .main-container {
-    max-width: 320px;
-    margin: 0 auto;
-    padding-left: 0.6rem;
-    padding-right: 0.6rem;
-} */
-
   .email-display div{
     padding: 5px;
   }
@@ -134,7 +127,8 @@ html {
   }
 
   nav.openMenu{
-    transform: translateY(0%);
+    transform: translateY(-5%);
+    background-color: rgba(255, 228, 196, 0.8);
   }
 
   .menu{ 

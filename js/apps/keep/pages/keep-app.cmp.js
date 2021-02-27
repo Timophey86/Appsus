@@ -6,7 +6,7 @@ const KEY = 'notes'
 
 export default {
   template: `
-    <section v-if="notes" class="keep-app" >
+    <section v-if="notes" class="keep-app main-container" >
       <div class="action">
       <note-filter @filtered="setFilter"/>
       <div class="add">

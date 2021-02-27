@@ -17,6 +17,7 @@ function query(key = KEY) {
 }
 
 function saveToStorage(key, value) {
+  console.log('this is the value ',value);
   storageService.postMany(key, value)
 }
 

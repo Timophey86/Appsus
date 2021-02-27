@@ -1,4 +1,5 @@
 import homePage from "./main-pages/home-page.cmp.js";
+import bookApp from "./apps/book/js/pages/book-app.cmp.js"
 import bookMainPage from "./apps/book/js/pages/home-page.cmp.js";
 import bookList from "./apps/book/js/cmps/book-list.cmp.js";
 import mailApp from "./apps/mail/pages/email-app.cmp.js";
@@ -10,6 +11,10 @@ const routes = [
   {
     path: "/",
     component: homePage,
+  },
+  {
+    path: "/book/book-app",
+    component: bookApp
   },
   {
     path: "/book/list",

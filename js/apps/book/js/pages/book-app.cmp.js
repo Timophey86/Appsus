@@ -3,6 +3,7 @@ import { bookService } from "../services/book-service.js";
 import { storageService } from "../services/async-storage-service.js";
 import bookList from "../cmps/book-list.cmp.js";
 import bookFilter from "../cmps/book-filter.cmp.js";
+const bookKey = "books";
 
 export default {
   template: `
@@ -85,11 +86,17 @@ export default {
     },
   },
   created () {
-    storageService.query(KEY).
-    then(books => this.books = books)
+    storageService.query(bookKey).
+    then(books => {this.books = books
+    if (!this.books || !this.books.lenght) {
+      this.books = bookService.sendBooks();
+      bookService.saveToStorage(bookKey, this.books);
+    }
+    }
+      )
   },
   components: {
     bookList,
     bookFilter,
-  },
+  }
 };
