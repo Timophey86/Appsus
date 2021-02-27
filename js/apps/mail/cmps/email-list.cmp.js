@@ -22,7 +22,7 @@ export default {
                 <option value="all" selected>All</option>
                 <option value="unread">Unread</option>
                 <option value="read">Read</option>
-                <option value="read">Starred</option>
+                <option value="stared">Starred</option>
             </select>
             <input type="search"  id="search-email-input" autofocus placeholder="🔍 Search mail" v-model="filterBy.searchTxt">
         </div>
@@ -49,11 +49,11 @@ export default {
         if (!mails || !mails.length) {
           this.emails = mailService.getMails();
           mailService.saveToStorage(KEY, this.emails);
-          this.getNumOfUnread()
+          this.getNumOfUnread();
         } else {
           console.log(" i have this for u", mails);
           this.emails = mails;
-          this.getNumOfUnread()
+          this.getNumOfUnread();
         }
       });
     },
@@ -78,39 +78,38 @@ export default {
         });
       } else if (this.sortBy === "read") {
         this.emails.sort((email) => {
-            return email.isRead ? -1 : 1;
-          });
-      }
-      else if (this.sortBy === "date") {
-        this.emails.sort((a,b) => {
+          return email.isRead ? -1 : 1;
+        });
+      } else if (this.sortBy === "date") {
+        this.emails.sort((a, b) => {
           console.log(a.date);
-            return a.date - b.date
-          });
+          return a.date - b.date;
+        });
       } else if (this.sortBy === "author") {
-        this.emails.sort((a,b) => {
-            var nameA = a.from.toUpperCase(); 
-            var nameB = b.from.toUpperCase(); 
-            if (nameA < nameB) {
-              return -1;
-            }
-            if (nameA > nameB) {
-              return 1;
-            }
-            return 0;
-          });
+        this.emails.sort((a, b) => {
+          var nameA = a.from.toUpperCase();
+          var nameB = b.from.toUpperCase();
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+          return 0;
+        });
       } else {
         this.$router.go();
       }
     },
     getNumOfUnread() {
-      var unread = 0
-      console.log('im unreaddddddd');
-      this.emails.forEach(mail => {
+      var unread = 0;
+      this.emails.forEach((mail) => {
         if (!mail.isRead) {
-          unread++}
-      })
-      this.$emit('updateUnread', unread)
-    }
+          unread++;
+        }
+      });
+      this.$emit("updateUnread", unread);
+    },
   },
   computed: {
     filteredEmails() {
@@ -136,6 +135,24 @@ export default {
         var filtered = this.emails.filter((email) => {
           return (
             !email.isRead &&
+            (email.body
+              .toLowerCase()
+              .includes(this.filterBy.searchTxt.toLowerCase()) ||
+              email.subject
+                .toLowerCase()
+                .includes(this.filterBy.searchTxt.toLowerCase()) ||
+              email.to
+                .toLowerCase()
+                .includes(this.filterBy.searchTxt.toLowerCase()) ||
+              email.from
+                .toLowerCase()
+                .includes(this.filterBy.searchTxt.toLowerCase()))
+          );
+        });
+      } else if (this.filterBy.options === "stared") {
+        var filtered = this.emails.filter((email) => {
+          return (
+            email.isStared &&
             (email.body
               .toLowerCase()
               .includes(this.filterBy.searchTxt.toLowerCase()) ||
