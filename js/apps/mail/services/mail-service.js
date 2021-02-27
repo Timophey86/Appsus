@@ -11,7 +11,8 @@ export const mailService = {
   getMails,
   sendEmail,
   changeReadStatus,
-  changeStaredStatus
+  changeStaredStatus,
+  randomDate,
 };
 
 function query(key = KEY) {
@@ -46,6 +47,12 @@ function sendEmail(recipent, about, txt, isDraft = false) {
   saveNewItemToStorage(KEY, newEmail);
 }
 
+function randomDate(start, end) {
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+}
+
 function changeReadStatus(id) {
   storageService.get(KEY, id).then((mail) => {
     (mail.isRead = true), storageService.put(KEY, mail);
@@ -64,7 +71,7 @@ function getMails() {
 
 var gEmails = _createEmails();
 
-function _createEmail(status, sentStatus= false) {
+function _createEmail(status, sentStatus = false, staredStatus = false) {
   return {
     isSent: sentStatus,
     isDraft: false,
@@ -72,10 +79,13 @@ function _createEmail(status, sentStatus= false) {
     subject: _makeLorem(),
     body: _makeLorem(10),
     isRead: status,
-    date: Date.now(),
+    date: randomDate(
+      new Date(2021, 1, 27, 0, 0, 0),
+      new Date(2021, 1, 27, 23, 59, 59)
+    ),
     from: _makeAuthor(1),
     to: _makeAuthor(1),
-    isStared: false,
+    isStared: staredStatus,
   };
 }
 
@@ -84,10 +94,19 @@ function _createEmails() {
   for (var i = 0; i < 12; i++) {
     if (i === 3 || i === 6 || i === 4) {
       emails.push(_createEmail(true));
-    } else if (i === 2 || i === 7 ) {
-      if (i===2) {emails.push(_createEmail(true, true))}
-      if (i===7) {emails.push(_createEmail(false, true))}
-    } else emails.push(_createEmail(false));
+    } else if (i === 2 || i === 7) {
+      if (i === 2) {
+        emails.push(_createEmail(true, true, true));
+      }
+      if (i === 7) {
+        emails.push(_createEmail(false, true));
+      }
+    } else {
+      if (i === 5 || i === 9) {
+        emails.push(_createEmail(false, false, true));
+      }
+      emails.push(_createEmail(false));
+    }
   }
   return emails;
 }

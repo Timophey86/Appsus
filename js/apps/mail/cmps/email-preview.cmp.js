@@ -16,7 +16,7 @@ export default {
         <div class="action-buttons" v-if="email.isRead"><i @click="showMail" class="far fa-envelope-open"></i><i @click="removeEmail(email.id)" class="far fa-trash-alt"></i> <router-link :to="{ name: 'compose', params: {to: email.from, subject: email.subject} }"><i class="fas fa-reply"></i></router-link> </div>
         <div class="action-buttons" v-else><i @click="showMail" class="far fa-envelope"></i><i @click="removeEmail(email.id)" class="far fa-trash-alt"></i><router-link :to="{ name: 'compose', params: {to: email.from, subject: email.subject} }"><i class="fas fa-reply"></i></router-link></div>
         </div>
-        <email-details @closeEpandedMail="closeModal" v-else :currEmail="email">  </email-details>
+        <email-details @replyToEmail="reply" @closeEpandedMail="closeModal" v-else :currEmail="email">  </email-details>
     </div>
     `,
   data() {
@@ -53,7 +53,8 @@ export default {
       this.$router.go();
     },
     reply() {
-      this.$emit("passOn", this.email);
+      // this.$emit("passOn", this.email);
+      this.$router.push({ name: 'compose', params: {to: this.email.from, subject: this.email.subject} })
     },
     changeStared() {
       mailService.changeStaredStatus(this.email.id);

@@ -4,7 +4,7 @@ export default {
   <router-link :to="'/books/'+book.id" class="book-preview">
     <!-- <section class="book-preview"> -->
         <h4>{{book.title}}</h4>
-        <img :src=book.thumbnail>
+        <img class="book-preview-image" :src=book.thumbnail>
         <p>Price: {{book.listPrice.amount}} {{showCurr}}</p>
     <!-- </section> -->
     </router-link>

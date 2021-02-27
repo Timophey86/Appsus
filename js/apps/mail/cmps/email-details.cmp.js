@@ -1,18 +1,18 @@
 export default {
   props: ["currEmail"],
   template: ` 
-    <section class="body-txt"  @click="closeModal">
+    <section class="body-txt" >
 <div class="body-header">
-    <h3 class="body-header-txt">{{currEmail.subject}}</h3>
+    <h3 class="body-header-txt"  @click="closeModal">{{currEmail.subject}}</h3>
 </div>
 
-<div class="body-body" >
+<div class="body-body"   @click="closeModal">
 
 <div> <span class='text-description'>From: </span>{{currEmail.from}} </div>
 <div>  <span class='text-description'>At: </span>  {{formatDate}}</div>
 <div>  <span class='text-description'>Body: </span>{{currEmail.body}}</div>
 </div>
-
+<div class="reply" @click="reply">Reply</div>
      </section>
     `,
   data() {
@@ -27,6 +27,9 @@ export default {
   methods: {
     closeModal() {
       this.$emit("closeEpandedMail");
+    },
+    reply() {
+      this.$emit("replyToEmail");
     },
   },
   computed: {

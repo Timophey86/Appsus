@@ -20,3 +20,19 @@
   .text-description {
     font-weight: 800;
   }
+
+
+
+
+  input[type=text] {
+    width: 100%;
+    padding: 6px 20px;
+    margin: 6px 0;
+    box-sizing: border-box;
+  }
+
+  .send  {
+    padding: 5px 0;
+    cursor: pointer;
+  }
+  
