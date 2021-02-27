@@ -1,32 +1,41 @@
 import { notesService } from '../services/keep-service.js'
 import noteList from '../cmps/note-list.cmp.js'
 import noteAdd from '../cmps/note-add.cmp.js'
+import noteFilter from '../cmps/note-filter.cmp.js'
 const KEY = 'notes'
 
 export default {
   template: `
     <section v-if="notes" class="keep-app " >
-      <note-list @deleteNote="deleteNote" :notes="notes"></note-list>
+      <div class="action">
+      <note-filter @filtered="setFilter"/>
       <div class="add">
-        
+        <h1>Add note: </h1>
         <select @change="onChange($event)" class="add-btn">
         <option value="noteTxt">text</option>
         <option value="noteTodos">todo</option>
         <option value="noteImg">img</option>
         </select>
-        <!-- <button class="add-btn" @click="add">add</button> -->
         <note-add :noteType="this.noteType" @addNote="addNote" v-if="isAdd"/>
       </div>
+      </div>
+
+      <note-list :notesToShow="notesToShow" @deleteNote="deleteNote"></note-list>
+
     </section>
   `,
   data() {
     return {
-      notes: null,
+      notes:[],
       isAdd: false,
-      noteType: null
+      noteType: null,
+      filterBy: null
     };
   },
   methods: {
+    setFilter(filterBy) {
+      this.filterBy = filterBy
+    },
     onChange(event) {
       this.noteType = event.target.value
       this.isAdd = true 
@@ -57,11 +66,31 @@ export default {
        this.isAdd = false
     }
   },
+  computed: {
+    notesToShow() {
+        if (!this.filterBy) return this.notes
+        const searchStr = this.filterBy.byName
+        const notesToShow = this.notes.filter(note => {
+            // console.log(note.info.txt);
+            // console.log(this.notes);
+            if (note.info.txt){
+              return note.info.txt.includes(searchStr)
+            }else if (note.info.label){
+              return note.info.label.includes(searchStr)
+            }else if (note.info.title) {
+              return note.info.title.includes(searchStr)
+            }
+            // return note.info.txt.includes(searchStr) || note.info.label.includes(searchStr) || note.info.title.includes(searchStr)
+        })
+        return notesToShow
+    }
+},
   created() {
     this.getNotes()
   },
   components: {
     noteList,
     noteAdd,
+    noteFilter
   }
 };

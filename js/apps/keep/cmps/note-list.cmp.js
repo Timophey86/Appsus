@@ -4,13 +4,14 @@ import noteImg from './note-img.cmp.js'
 import noteVideo from './note-video.cmp.js'
 
 export default {
-    props: ['notes'],
+    props: ['notesToShow'],
     template: `
         <section class="note-container">
-            <div v-for="(note, idx) in notes" :key="note.id" class="notes-list"> 
-              <component  @deleteNote="deleteNote" :is="note.type" :info="note.info" :note="note"  >
+            <div v-for="(note, idx) in notesToShow" :key="note.id" class="notes-list"> 
+              <component  @deleteNote="deleteNote" :is="note.type" :info="note.info" :note="note">
               </component>
             </div>
+            
         </section>
     `,
     methods:{

@@ -1,0 +1,20 @@
+.note{
+  width: 200px;
+  height: 200px;
+  margin: 5px;
+  border-radius: 20px;
+  padding: 11px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between
+}
+
+.note h1{
+  text-align: center;
+}
+
+.noteImg{
+  margin: auto;
+}
+
+

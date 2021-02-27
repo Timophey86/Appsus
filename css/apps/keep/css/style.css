@@ -1,15 +1,11 @@
-.note-txt{
-    margin: auto;
+@import "./pages/keep-app.cmp.css";
+
+*{
+    box-sizing: border-box;
 }
 
-.note{
-    width: 200px;
-    height: 200px;
-    cursor: pointer;
+@font-face {
+    font-family: kanit-regular;
+    src: url(../../../../fonts/kanit/Kanit-Regular.ttf);
 }
 
-.edit-modal{
-    background-color: white;
-    width: 350px;
-    height: 300px;
-}

@@ -1,28 +1,11 @@
-import { notesService } from '../services/keep-service.js'
-import notePreview from '../cmps/note-preview.cmp.js'
+@import "../cmps/note-list.cmp.css";
+@import "../cmps/notes.cmp.css";
+@import "../cmps/note-edit-modal.cmp.css";
 
 
+.note-container{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
 
-export default {
-  template: `
-    <section class="keep-app">
-      <note-preview :notes="notes"></note-preview>
-    </section>
-  `,
-  data() {
-    return {
-      notes: null,
-    };
-  },
-  created() {
-    this.notes = notesService.query()
-    notesService.query()
-    .then(notes => this.notes = notes)
-  },
-  components: {
-    notePreview
-  }
-
-
-
-};
+}

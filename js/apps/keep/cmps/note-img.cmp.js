@@ -10,10 +10,13 @@ export default {
       <div class="note" :style="{ 'background-color': note.style.backgroundColor }">
 
         <h1>{{note.info.title}}</h1>
-        <img width= "140px" height="140px" :src="note.info.url" >
-        <button @click="edit">Edit</button>
-        <button @click="deleteNote">delete</button>
-        <note-edit-modal @save="save" v-if="this.isEdit" :note="note" />
+        <img width= "130px" height="130px" :src="note.info.url" class="noteImg">
+        <div>
+
+          <button @click="edit">Edit</button>
+          <button @click="deleteNote">delete</button>
+          <note-edit-modal @save="save" v-if="this.isEdit" :note="note" />
+        </div>
       </div>
 
     </section>

@@ -1,7 +1,10 @@
 export default {
     template:`
     <section class="home app-main main-container">
-        <h1>Our homePage!!</h1>
+        <div class="home-img">
+
+            <img src="img/home.jpg" alt="">
+        </div>
     </section>
     `
 }

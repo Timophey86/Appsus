@@ -1,5 +1,5 @@
 @import "../js/apps/book/css/main.css";
-@import "../js/apps/keep/css/style.css";
+@import "../css/apps/keep/css/style.css";
 
 /* MAIN NAV BAR  */
 .app-header {
@@ -114,4 +114,10 @@
 .body-txt {
   background-color: hotpink;
   cursor: pointer;
+}
+
+.home-img {
+  display: flex;
+  justify-content: center;
+
 }
