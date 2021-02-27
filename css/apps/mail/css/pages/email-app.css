@@ -1,0 +1,41 @@
+.mail-app-main-container {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+  }
+  
+  .mail-side-actions {
+    width: 10%;
+    display: grid;
+    padding: 20px 20px 20px 0;
+    align-items: center;
+    justify-items: stretch;
+    grid-row-gap: 10px;
+    margin-right: 10px;
+    align-self: baseline;
+    margin-top: 45px;
+    min-width: 170px;
+  }
+  
+  .mail-side-actions a {
+    text-decoration: none;
+    color: black;
+    background-color: #faf3e0;
+    border: 2px solid grey;
+    text-align: center;
+    padding: 10px;
+    font-size: large;
+  }
+  
+  .buttons {
+    width: 100%;
+    table-layout: fixed;
+    margin-right: 20px;
+  }
+  
+  .buttons button {
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  

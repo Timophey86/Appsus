@@ -9,9 +9,9 @@ export default {
       <tr> <td><router-link :to="'/mail-app/inbox'"><button>inbox</button></router-link> </tr> 
        <tr><td><router-link :to="'/mail-app/sent'"><button>sent</button></router-link> </tr> 
 </table> -->
-                <router-link :to="'/mail-app/compose'"><div class="action-link">Compose</div></router-link> 
-                <router-link :to="'/mail-app/inbox'"><div class="action-link">Inbox ({{this.numOfInboxs}})</div></router-link> 
-                <router-link :to="'/mail-app/sent'"><div class="action-link">Sent</div></router-link> 
+                <router-link :to="'/mail-app/compose'"><div class="action-link" @click="toggleActionBar">Compose</div></router-link> 
+                <router-link :to="'/mail-app/inbox'"><div class="action-link" @click="toggleActionBar">Inbox ({{this.numOfInboxs}})</div></router-link> 
+                <router-link :to="'/mail-app/sent'"><div class="action-link" @click="toggleActionBar">Sent</div></router-link> 
             </div>
      <router-view @updateUnread="updateInbox" />
      </div>

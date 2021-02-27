@@ -1,0 +1,18 @@
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  
+  .action-buttons i {
+    padding: 5px;
+    margin: 5px;
+  }
+
+  .stars-container {
+    padding: 10px;
+  }
+  
+  .title {
+    margin-right: 3px;
+  }

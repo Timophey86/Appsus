@@ -64,9 +64,9 @@ function getMails() {
 
 var gEmails = _createEmails();
 
-function _createEmail(status) {
+function _createEmail(status, sentStatus= false) {
   return {
-    isSent: false,
+    isSent: sentStatus,
     isDraft: false,
     id: utilService.makeId(),
     subject: _makeLorem(),
@@ -81,9 +81,12 @@ function _createEmail(status) {
 
 function _createEmails() {
   var emails = [];
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 12; i++) {
     if (i === 3 || i === 6 || i === 4) {
       emails.push(_createEmail(true));
+    } else if (i === 2 || i === 7 ) {
+      if (i===2) {emails.push(_createEmail(true, true))}
+      if (i===7) {emails.push(_createEmail(false, true))}
     } else emails.push(_createEmail(false));
   }
   return emails;
