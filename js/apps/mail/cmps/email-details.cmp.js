@@ -3,13 +3,14 @@ export default {
   template: ` 
     <section class="body-txt"  @click="closeModal">
 <div class="body-header">
-    <h4 class="body-header-txt">{{currEmail.subject}}</h4>
+    <h3 class="body-header-txt">{{currEmail.subject}}</h3>
 </div>
 
 <div class="body-body" >
-<span class='text-description'>From: </span>{{currEmail.from}} <br>
- <span class='text-description'>At: </span>  {{formatDate}} <br>
- <span class='text-description'>Body: </span>{{currEmail.body}}
+
+<div> <span class='text-description'>From: </span>{{currEmail.from}} </div>
+<div>  <span class='text-description'>At: </span>  {{formatDate}}</div>
+<div>  <span class='text-description'>Body: </span>{{currEmail.body}}</div>
 </div>
 
      </section>
@@ -25,8 +26,8 @@ export default {
 
   methods: {
     closeModal() {
-        this.$emit('closeEpandedMail')
-    }
+      this.$emit("closeEpandedMail");
+    },
   },
   computed: {
     formatDate() {

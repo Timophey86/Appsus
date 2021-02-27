@@ -6,9 +6,9 @@ const KEY = "emails";
 export default {
   template: `
     <section class= "email-list">
-        <h3>This is our emails list</h3>
+        <h3>This is our email list</h3>
         <div class="sort-and-search">
-        <div class="sort">Sort By
+        <div class="sort">Sort:
         <select class="sort-by-bar" @change="sortEmails" v-model="sortBy">
                 <option value="all" selected>All</option>
                 <option value="date">Date</option>
@@ -17,7 +17,7 @@ export default {
                 <option value="author">Author</option>
             </select>
             </div>
-            <div class="search-bar">Filter
+            <div class="search-bar">Filter:
             <select class="read-unread-all" v-model="filterBy.options">
                 <option value="all" selected>All</option>
                 <option value="unread">Unread</option>
@@ -49,9 +49,11 @@ export default {
         if (!mails || !mails.length) {
           this.emails = mailService.getMails();
           mailService.saveToStorage(KEY, this.emails);
+          this.getNumOfUnread()
         } else {
           console.log(" i have this for u", mails);
           this.emails = mails;
+          this.getNumOfUnread()
         }
       });
     },
@@ -99,6 +101,14 @@ export default {
         this.$router.go();
       }
     },
+    getNumOfUnread() {
+      var unread = 0
+      this.emails.forEach(mail => {
+        if (!mail.isRead) {
+          unread++}
+      })
+      this.$emit('updateUnread', unread)
+    }
   },
   computed: {
     filteredEmails() {
@@ -166,6 +176,7 @@ export default {
     } else if (this.$route.name === "sent") {
       this.getSentMails();
     }
+    
   },
   components: {
     emailPreview,
