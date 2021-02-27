@@ -13,10 +13,12 @@ export default {
                        <p>{{todo.txt}}</p>
                    </li>
               </ul>
-              <div class="edit">
+              <div class="edit-delete-btn">
 
-                <button @click="edit">Edit</button>
-                <button @click="deleteNote">delete</button>
+
+                <div @click="edit"><i class="fas fa-edit"></i></div>
+                <div class="delete" @click="deleteNote"><i class="far fa-trash-alt"></i></div>
+
                 <note-edit-modal @save="save" v-if="this.isEdit" :note="note" />
               </div>
           </div>

@@ -6,20 +6,23 @@ export default {
         <section class="note-add">
 
         <div v-if="noteType === 'noteTxt'">
+            <h1>Add you'r note:</h1>
         <textarea cols="20" rows="10" v-model="newNote.txt.info.txt"></textarea>
-        <button @click="addNote">save</button>
+            <div class="add-save" @click="addNote"><i class="far fa-save fa-lg"></i></div>
         </div>
 
-        <div v-if="noteType === 'noteTodos'">
+        <!-- <div class="add-modal" v-if="noteType === 'noteTodos'">
         <input type="text" v-model="newNote.todos.info.label">
         <input type="text" v-model="newNote.todos.txt">
         <button @click="addNote">save</button>
-        </div>
+        </div> -->
 
-        <div v-if="noteType === 'noteImg'">
-        <input type="text" v-model="newNote.img.info.title">
-        <input type="text" v-model="newNote.img.info.url">
-        <button @click="addNote">save</button>
+        <div class="add-img" v-if="noteType === 'noteImg'">
+            <label>Add text:</label>
+            <input type="text" v-model="newNote.img.info.title">
+            <label>Add image url:</label>
+            <input type="text" v-model="newNote.img.info.url">
+            <div class="add-save" @click="addNote"><i class="far fa-save fa-lg"></i></div>
         </div>
         
 

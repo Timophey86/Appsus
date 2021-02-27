@@ -10,11 +10,13 @@ export default {
       <div class="note" :style="{ 'background-color': note.style.backgroundColor }">
 
         <h1>{{note.info.title}}</h1>
-        <iframe width="150" height="100" src="https://www.youtube.com/watch?v=1lFI8sYN1Rc" frameborder="0" ></iframe>
-        <div class="edit">
+        <iframe width="150" height="100" :src="note.info.url" frameborder="0" ></iframe>
+        <div class="edit-delete-btn">
 
-          <button @click="edit">Edit</button>
-          <button @click="deleteNote">delete</button>
+
+          <div @click="edit"><i class="fas fa-edit"></i></div>
+          <div class="delete" @click="deleteNote"><i class="far fa-trash-alt"></i></div>
+
           <note-edit-modal @save="save" v-if="this.isEdit" :note="note" />
         </div>
       </div>

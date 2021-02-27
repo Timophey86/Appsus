@@ -10,8 +10,12 @@ export default {
         
         <h1>{{note.info.txt}}</h1>
         <div class="edit">
-          <button @click="edit">Edit</button>
-          <button @click="deleteNote">delete</button>
+          <div class="edit-delete-btn">
+
+            <div @click="edit"><i class="fas fa-edit"></i></div>
+            <div class="delete" @click="deleteNote"><i class="far fa-trash-alt"></i></div>
+          </div>
+
           <note-edit-modal @save="save" v-if="this.isEdit" :note="note" />
 
         </div>

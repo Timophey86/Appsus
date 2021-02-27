@@ -1,0 +1,43 @@
+.note-add{
+    width: 260px;
+    height: 260px;
+    background-color: white;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 10px;
+    text-align: center;
+    
+}
+
+.add-img{
+    display: flex;
+    flex-direction: column; 
+}
+
+.add-img input{
+    margin-bottom: 20px;
+}
+
+.add-img button{
+    margin-top: 10px;
+}
+
+.add-filter{
+    margin-top: 10px;
+    width: 80px;
+    height: 30px;
+    border: 2px solid black;
+    border-radius: 7px;
+    font-size: 1.1rem;
+}
+
+.add-save{
+    cursor: pointer;
+}
+
+

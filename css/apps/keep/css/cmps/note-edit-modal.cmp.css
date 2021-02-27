@@ -1,12 +1,29 @@
 .edit-modal{
+  width: 250px;
+  height: 250px;
   background-color: white;
-  width: 350px;
-  height: 300px;
+  border-radius: 20px;
+  text-align: center;
+  position:absolute;
 }
 
+.edit-modal h1{
+  font-size: 1.5rem;
+}
 
+.text-area{
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
 
+.save-btn{
+  display: inline;
+  cursor: pointer;
+  margin-left: 10px;
+}
 
-.edit-modal {
-  position: fixed;
+.img-input{
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

@@ -1,0 +1,11 @@
+.note-filter{
+    font-size: 1.5rem;
+}
+
+#text-input{
+    width: 250px;
+    font-size: 1.2rem;
+    border-radius: 7px;
+    border: 2px solid black;
+}
+

@@ -10,11 +10,12 @@ export default {
       <div class="note" :style="{ 'background-color': note.style.backgroundColor }">
 
         <h1>{{note.info.title}}</h1>
-        <img width= "130px" height="130px" :src="note.info.url" class="noteImg">
-        <div>
+        <img width= "130px" height="110px" :src="note.info.url" class="noteImg">
+        <div class="edit-delete-btn">
 
-          <button @click="edit">Edit</button>
-          <button @click="deleteNote">delete</button>
+
+          <div @click="edit"><i class="fas fa-edit"></i></div>
+          <div class="delete" @click="deleteNote"><i class="far fa-trash-alt"></i></div>
           <note-edit-modal @save="save" v-if="this.isEdit" :note="note" />
         </div>
       </div>

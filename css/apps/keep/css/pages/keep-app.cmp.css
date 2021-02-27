@@ -1,6 +1,8 @@
 @import "../cmps/note-list.cmp.css";
 @import "../cmps/notes.cmp.css";
 @import "../cmps/note-edit-modal.cmp.css";
+@import "../cmps/note-add.cmp.css";
+@import "../cmps/note-filter.cmp.css";
 
 
 .note-container{

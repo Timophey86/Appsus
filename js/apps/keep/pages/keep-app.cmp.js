@@ -6,15 +6,15 @@ const KEY = 'notes'
 
 export default {
   template: `
-    <section v-if="notes" class="keep-app " >
+    <section v-if="notes" class="keep-app" >
       <div class="action">
       <note-filter @filtered="setFilter"/>
       <div class="add">
-        <h1>Add note: </h1>
-        <select @change="onChange($event)" class="add-btn">
+        <h1>Add note :</h1>
+        <select @change="onChange($event)" class="add-filter">
+          <option value="noteImg">image</option>
         <option value="noteTxt">text</option>
-        <option value="noteTodos">todo</option>
-        <option value="noteImg">img</option>
+        <!-- <option value="noteTodos">todo</option> -->
         </select>
         <note-add :noteType="this.noteType" @addNote="addNote" v-if="isAdd"/>
       </div>
@@ -71,8 +71,6 @@ export default {
         if (!this.filterBy) return this.notes
         const searchStr = this.filterBy.byName
         const notesToShow = this.notes.filter(note => {
-            // console.log(note.info.txt);
-            // console.log(this.notes);
             if (note.info.txt){
               return note.info.txt.includes(searchStr)
             }else if (note.info.label){
@@ -80,7 +78,6 @@ export default {
             }else if (note.info.title) {
               return note.info.title.includes(searchStr)
             }
-            // return note.info.txt.includes(searchStr) || note.info.label.includes(searchStr) || note.info.title.includes(searchStr)
         })
         return notesToShow
     }
