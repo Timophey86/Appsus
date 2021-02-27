@@ -18,6 +18,7 @@ export default {
 
                 <div @click="edit"><i class="fas fa-edit"></i></div>
                 <div class="delete" @click="deleteNote"><i class="far fa-trash-alt"></i></div>
+                <div class="pin"><i class="fas fa-thumbtack"></i></div>
 
                 <note-edit-modal @save="save" v-if="this.isEdit" :note="note" />
               </div>
@@ -40,7 +41,10 @@ export default {
         save(note){
           notesService.editNote(note)
           this.isEdit= false
-        }
+        },
+      //   pinNote(){
+      //     this.$emit('pinNote',this.note.id) 
+      //   }
       },
     components: {
         noteEditModal,

@@ -8,7 +8,7 @@ export default {
     template: `
         <section class="note-container">
             <div v-for="(note, idx) in notesToShow" :key="note.id" class="notes-list"> 
-              <component  @deleteNote="deleteNote" :is="note.type" :info="note.info" :note="note">
+              <component @deleteNote="deleteNote" :is="note.type" :info="note.info" :note="note">
               </component>
             </div>
             
@@ -17,7 +17,7 @@ export default {
     methods:{
         deleteNote(noteId){
             this.$emit('deleteNote',noteId)
-        }
+        },
     },
     components: {
         noteTxt,

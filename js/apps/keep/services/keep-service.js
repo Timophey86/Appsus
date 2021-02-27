@@ -13,7 +13,8 @@ export const notesService = {
   getNewTxtNote,
   addNote,
   getNewTodosNote,
-  getNewImgNote
+  getNewImgNote,
+  addToTop
 }
 
 
@@ -31,6 +32,10 @@ function saveToStorage(key, value) {
 }
 function deleteNote(noteId) {
   return storageService.remove(KEY, noteId)
+}
+
+function addToTop(noteId){
+  storageService.addToTop(KEY, noteId)
 }
 
 function query(key = KEY) {
@@ -116,11 +121,12 @@ var gNotes = [
     type: 'noteTodos',
     isPinned: false,
     info: {
-      label: 'How was it:',
+      label: 'TO DO :',
       todos: [
-        { txt: 'Do that', doneAt: null },
-        { txt: 'Do this', doneAt: 187111111 },
-        { txt: 'Do that', doneAt: 187111111 }
+        { txt: 'Eat', doneAt: null },
+        { txt: 'Sleep(not)', doneAt: 187111111 },
+        { txt: 'Code', doneAt: 187111111 },
+        { txt: 'Repeat', doneAt: 187111111 }
       ]
     },
     style: {
@@ -133,7 +139,7 @@ var gNotes = [
     isPinned: false,
     info: {
       url: 'https://images.unsplash.com/photo-1516633630673-67bbad747022?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80',
-      title: 'Me playing Mi'
+      title: 'i need vitamin sea !!!'
     },
     style: {
       backgroundColor: '#ACECD5'
@@ -156,7 +162,7 @@ var gNotes = [
     isPinned: false,
     info: {
       url: 'https://images.unsplash.com/photo-1455275803899-34511e680e27?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80',
-      title: 'Me playing Mi'
+      title: 'keep on cruising'
     },
     style: {
       backgroundColor: '#F28997'
@@ -168,7 +174,7 @@ var gNotes = [
     isPinned: false,
     info: {
       url: 'https://images.unsplash.com/photo-1610575668742-d1891a67df5a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=753&q=80',
-      title: 'Me playing Mi'
+      title: 'VIBE'
     },
     style: {
       backgroundColor: '#A5FFE1'
@@ -191,7 +197,7 @@ var gNotes = [
     isPinned: false,
     info: {
       url: 'https://images.unsplash.com/photo-1468436385273-8abca6dfd8d3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=694&q=80',
-      title: 'Me playing Mi'
+      title: 'Amsterdam'
     },
     style: {
       backgroundColor: '#00d'
@@ -202,11 +208,10 @@ var gNotes = [
     type: 'noteTodos',
     isPinned: false,
     info: {
-      label: 'How was it:',
+      label: 'TO DO :',
       todos: [
         { txt: 'Do that', doneAt: null },
         { txt: 'Do this', doneAt: 187111111 },
-        { txt: 'Do that', doneAt: 187111111 }
       ]
     },
     style: {

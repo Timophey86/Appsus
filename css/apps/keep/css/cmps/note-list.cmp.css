@@ -14,6 +14,22 @@
 .edit-delete-btn .delete{
     margin-left: 10px;
 }
+.edit-delete-btn .pin{
+    margin-left: 10px;
+}
+
+.notes-list h1{
+    font-size: 1.2rem;
+}
+
+.notes-list p{
+    font-size: 1.2rem;
+}
+
+.notes-list ul{
+    list-style: square;
+    margin: 0;
+}
 
 
 

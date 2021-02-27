@@ -5,7 +5,8 @@ export const storageService = {
     post,
     put,
     remove,
-    postMany
+    postMany,
+
 }
 
 function query(entityType) {
@@ -55,6 +56,18 @@ function remove(entityType, entityId) {
             _save(entityType, entities)
         })
 }
+
+// function addToTop(entityType, entityId) {
+//     return query(entityType)
+//         .then(entities => {
+//             const idx = entities.findIndex(entity => entity.id === entityId);
+//             const note = entities[idx]
+//             entities.splice(idx, 1)
+//             entities.unshift(note)
+//             _save(entityType, entities)
+//             return entities;
+//         })
+// }
 
 function _save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
