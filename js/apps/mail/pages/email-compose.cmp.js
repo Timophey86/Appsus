@@ -12,6 +12,7 @@ export default {
             <input placeholder="Subject" v-model="mail.subject" required>
             <textarea class="compose-body" rows="8" cols="50" placeholder="email text" v-model="mail.body" required></textarea>
             <button @click="send">Send</button>
+            <!-- <button class="save-to-draft">Save to draft <i class="fas fa-archive"></i></button> -->
         </section> 
     `,
     data() {
@@ -39,7 +40,9 @@ export default {
             mailService.sendEmail(this.mail.to, this.mail.subject, this.mail.body)
             this.$router.push('/mail-app')
         },
-        saveToSent() {}
+        saveToDraft() {
+            
+        }
     }
 }
 

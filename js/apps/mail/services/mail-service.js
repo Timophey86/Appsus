@@ -30,9 +30,10 @@ function removeItem(key = KEY, value) {
   storageService.remove(key, value);
 }
 
-function sendEmail(recipent, about, txt) {
+function sendEmail(recipent, about, txt, isDraft = false) {
   let newEmail = {
     isSent: true,
+    isDraft: isDraft,
     id: utilService.makeId(),
     from: "Appsus Industries",
     to: recipent,
@@ -66,6 +67,7 @@ var gEmails = _createEmails();
 function _createEmail(status) {
   return {
     isSent: false,
+    isDraft: false,
     id: utilService.makeId(),
     subject: _makeLorem(),
     body: _makeLorem(10),

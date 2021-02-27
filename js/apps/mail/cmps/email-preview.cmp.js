@@ -10,7 +10,7 @@ export default {
         <div class="email-display" :class="isRead" v-if="mailNotShown">
         <div @click="changeStared" class="stars-container" v-if="email.isStared"><i class="fas fa-star"></i></div>
         <div @click="changeStared" class="stars-container" v-else><i class="far fa-star"></i></div>
-        <div @click="showMail" class="author"><span class="title">Author:</span>{{this.email.from}}</div>
+        <div @click="showMail" class="author"><span class="title">From:</span>{{this.email.from}}</div>
         <div @click="showMail" class="subject"><span class="title">Subject:</span>{{this.email.subject}}</div>
         <div @click="showMail" class="time-sent"><span class="title">Time:</span> {{formatDate}}</div> 
         <div class="action-buttons" v-if="email.isRead"><i @click="showMail" class="far fa-envelope-open"></i><i @click="removeEmail(email.id)" class="far fa-trash-alt"></i> <router-link :to="{ name: 'compose', params: {to: email.from, subject: email.subject} }"><i class="fas fa-reply"></i></router-link> </div>
